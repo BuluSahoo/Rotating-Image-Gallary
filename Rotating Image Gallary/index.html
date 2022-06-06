@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rotating Image Gallary</title>
+</head>
+
+<body>
+    <div class="image-container">
+        <span style="--i: 1">
+            <img src="https://picsum.photos/id/230/300/200">
+        </span>
+
+        <span style="--i: 2">
+            <img src="https://picsum.photos/id/288/300/200">
+        </span>
+
+        <span style="--i: 3">
+            <img src="https://picsum.photos/id/234/300/200">
+        </span>
+
+        <span style="--i: 4">
+            <img src="https://picsum.photos/id/231/300/200">
+        </span>
+
+        <span style="--i: 5">
+            <img src="https://picsum.photos/id/233/300/200">
+        </span>
+
+        <span style="--i: 6">
+            <img src="https://picsum.photos/id/277/300/200">
+        </span>
+
+        <span style="--i: 7">
+            <img src="https://picsum.photos/id/237/300/200">
+        </span>
+        <span style="--i: 8">
+            <img src="https://picsum.photos/id/243/300/200">
+        </span>
+
+    </div>
+    <div class="btn-container">
+        <button class="btn" id="prev">Prev</button>
+        <button class="btn" id="next">Next</button>
+    </div>
+
+
+
+
+    <script>
+        const ImcontEl =document.querySelector(".image-container")
+        const prevEl = document.getElementById("prev")
+        const nextEl = document.getElementById("next")
+        let x=0
+        let timer 
+        prevEl.addEventListener('click', ()=>{
+            x= x+45
+            clearTimeout(timer)
+            updateGallary()
+        })
+        nextEl.addEventListener('click', ()=>{
+            x= x-45
+            clearTimeout(timer)
+            updateGallary()
+        })
+        function updateGallary(){
+            ImcontEl.style.transform =`perspective(1000px) rotateY(${x}deg)`
+            timer =setTimeout(()=>{
+                x=x-45
+                updateGallary()
+            }, 2000)
+        }
+        updateGallary()
+
+    </script>
+</body>
+
+</html>
